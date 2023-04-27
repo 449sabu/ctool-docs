@@ -1,38 +1,53 @@
-import { Tab, Tabs } from 'nextra-theme-docs'
-import { Callout } from 'nextra-theme-docs'
-import { Steps } from 'nextra-theme-docs'
+import { Tab, Tabs } from "nextra-theme-docs";
+import { Callout } from "nextra-theme-docs";
+import { Steps } from "nextra-theme-docs";
 
 <Callout type="warning" emoji="⚠️">
-  SPO Pagesのドキュメントは現在作成中です。
+	SPO Pagesのドキュメントは現在作成中です。
 </Callout>
 
 # SPO Pages
+
 ![Hello](/spo-pages/top.png)
 
 SPO Pages は Next.js ベースで作成された Cardano SPO 向けの静的サイト作成ツールです。  
 Pool ID を設定するだけで [Koios](https://www.koios.rest/) からデータを取得し、 [mesh](https://meshjs.dev/) を使用した委任ボタンを備えたホームページをすぐに作成できます！
 
-<Steps>
-### Githubからリポジトリをフォークする
-
-### 環境変数を設定する
-最小構成では、プールIDのみを環境変数に設定します。
-
-### ホスティングする
-Github Pages と Vercel でホスティングする手順を確認します。
-
 <Tabs items={['Vercel', 'Github Pages']}>
   <Tab>
   {/* vercel */}
-    **pNPM**: Fast, disk space efficient package manager.
+    <Steps>
+### Githubからリポジトリをフォークする
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2F449sabu%2Fspo-pages&env=NEXT_PUBLIC_POOL_ID&envDescription=%E3%80%8Cpool...%20%E3%80%8D%E3%81%A7%E5%A7%8B%E3%81%BE%E3%82%8Bbech32%E5%BD%A2%E5%BC%8F%E3%81%AE%E3%83%97%E3%83%BC%E3%83%ABID&demo-url=https%3A%2F%2Fspo-pages.vercel.app%2F&demo-image=https%3A%2F%2Fraw.githubusercontent.com%2F449sabu%2Fdocs%2Fmain%2Fpublic%2Fspo-pages%2Ftop.png)
+
+### 環境変数を設定する
+
+最小構成では、プール ID のみを環境変数に設定します。
+
+### ホスティングする
+
+Github Pages と Vercel でホスティングする手順を確認します。
+
+</Steps>
+    
   </Tab>
   <Tab>
   {/* github pgages */}
-    **npm** is a package manager for the JavaScript programming language.
-  </Tab>
-</Tabs>
+    
+        <Steps>
+### Githubからリポジトリをフォークする
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2F449sabu%2Fspo-pages&env=NEXT_PUBLIC_POOL_ID&envDescription=%E3%80%8Cpool...%20%E3%80%8D%E3%81%A7%E5%A7%8B%E3%81%BE%E3%82%8Bbech32%E5%BD%A2%E5%BC%8F%E3%81%AE%E3%83%97%E3%83%BC%E3%83%ABID&demo-url=https%3A%2F%2Fspo-pages.vercel.app%2F&demo-image=https%3A%2F%2Fraw.githubusercontent.com%2F449sabu%2Fdocs%2Fmain%2Fpublic%2Fspo-pages%2Ftop.png)
+
+### 環境変数を設定する
+
+最小構成では、プール ID のみを環境変数に設定します。
+
+### Github Actions を使う
+
+Github Pages と Vercel でホスティングする手順を確認します。
 
 </Steps>
-
-
-## 環境変数
+  </Tab>
+</Tabs>
