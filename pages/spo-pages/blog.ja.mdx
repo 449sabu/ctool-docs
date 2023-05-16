@@ -1,7 +1,103 @@
-import { Callout } from 'nextra-theme-docs'
+import { Callout } from "nextra-theme-docs";
+import { Tab, Tabs } from "nextra-theme-docs";
+import { Steps } from "nextra-theme-docs";
 
 # ブログを作成する
 
+SPO Pages では Markdown 形式でブログを作成することができます。
+
+作成した記事は SPO Pages 内での閲覧に加え、日本発のエンジニア向け情報共有コミュニティ [Zenn](https://zenn.dev/)と連携し、公開することができます。
+
+## ブログ機能を有効にする
+
 <Callout type="warning" emoji="⚠️">
-  ドキュメントは現在作成中です。
+	初期設定ではブログ機能を利用できないようになっています。
+	**初めてブログ機能を使用する場合**は、以下の手順でブログ機能を有効にしてください。
 </Callout>
+
+`./configuration`配下にある`spo-pages.config.json`を開き、`blog`キー内の`enable`キーを`true`に変更する。
+
+```json {4-6} filename="./configuration/spo-pages.config.json"
+{
+	"theme": "mint",
+	"blog": {
+		"enable": true,
+		"title": "ここを編集してブログページのタイトルを追加できます",
+		"description": "ここを編集してブログページの簡単な説明を追加できます。"
+	}
+	// ... 省略
+}
+```
+
+### 各キーと値の説明
+
+| 必須 | キー        | 説明                                                     |
+| :--: | :---------- | :------------------------------------------------------- |
+|  ✅  | enable      | ブログ機能を有効にする場合は `true`、しない場合は`false` |
+|  ✅  | title       | ブログトップページと OGP に設定されるタイトル            |
+|  ✅  | description | ブログトップページと OGP に設定されるブログの簡単な説明  |
+
+
+<Steps>
+
+### Markdown ファイルを作成する
+
+SPO Pages では `./articles` 配下に Markdown ファイルを作成することでブログページを作成できます。
+
+- ファイル名は記事を識別する `slug` の役割を担うので、必ずファイル名が被らないようにしてください。
+- 以下の例では「example」という記事ページが作成されます。
+
+```sh
+.
+├── articles
+│   └── example.md   # 👈
+├── public
+│   └── 画像.png
+├── configuration
+├── src
+├── README.md
+├── node_modules
+├── package-lock.json
+└── package.json
+```
+
+<Callout type="info" emoji="💡">
+	ディレクトリ名を `articles`
+	とすることで、日本発のエンジニア向け情報共有コミュニティ
+	[Zenn](https://zenn.dev/)と連携し、SPO の質の高い技術情報を Zenn
+	プラットフォーム上で 日本のエンジニア向けに情報共有ができるようになりました！
+</Callout>
+
+### 記事を執筆する
+
+- Markdown ファイルを作成したら、最初に記事に関する情報を YAML 形式で記述し、続けて Markdown 形式で本文を書き始めることができます。
+- YAML 形式とは `---`と `---` の間の部分の記事に関する情報をまとめた部分のことです。  
+  YAML 形式で指定できる項目は、 `title`, `description`, `image`, `date`, `published`の５項目で、いずれも必須です。
+  また、記述した各項目の内容は `<meta />タグ` でも使用されるので、 SEO 対策を自動で行います。
+
+<Tabs items={['Zennと連携する', 'SPO Pagesのみで情報発信する']}>
+<Tab>
+</Tab>
+<Tab>
+</Tab>
+</Tabs>
+
+```md {1-7} copy filename="./articles/example.md"
+---
+title: "Cardanoとは？" # 記事のタイトル
+description: "Cardanoについて説明します" # 記事の内容に関する簡単な説明
+image: "/image.png" # 記事のTOP画像(推奨サイズ : 1200px x 630px)
+date: "2023-01-01" # 執筆日
+published: false # 下書きの場合は false, 公開の場合は true を指定してください
+---
+
+# Cardano とは？
+
+この記事では Cardano について解説します。
+
+- ステーキングについて
+- 分散化について
+  ...
+```
+
+</Steps>
