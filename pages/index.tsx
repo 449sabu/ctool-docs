@@ -1,9 +1,9 @@
-const index = () => {
+const Home = () => {
   return (
     <div>
-      Enter
+      Hello
     </div>
   );
 }
 
-export default index;
+export default Home;

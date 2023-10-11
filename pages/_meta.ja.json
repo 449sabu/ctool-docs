@@ -1,4 +1,15 @@
 {
   "index": "Welcome",
-  "spo-pages": "SPO Pages"
+  "-- About": {
+    "type": "separator",
+    "title": "⚡️ 各CIEL Toolsの使用方法"
+  },
+  "spo-pages": "SPO Pages",
+  "-- Learn": {
+    "type": "separator",
+    "title": "📝 Cardanoを学ぶ"
+  },
+  "transaction": "Transaction",
+  "api": "API",
+  "stake-pool": "Staking Pool"
 }

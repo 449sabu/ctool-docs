@@ -1,0 +1,36 @@
+import StackBlitz from "../../components/StackBlitz";
+import { Callout } from 'nextra/components'
+import Image from 'next/image'
+
+# Browser Wallet との対話
+
+DEXやNFTマーケットプレイスでは多くの場合で Chrome などのブラウザにインストールされたウォレットを接続することから始まります。
+[CIP 30 - Cardano dApp-Wallet Web Bridge](https://cips.cardano.org/cips/cip30/) では、このエントリーポイントとなる
+`windw.cardano` オブジェクトと、そのオブジェクトが提供するAPIが定義されています。
+
+## CIP-30を使用したウォレット接続の例
+この例では、「CIP-30」で定義されている `window.cardano` オブジェクトを使用し、ブラウザにインストールされているウォレットを接続できます。
+
+ウォレットが接続されると、そのアドレスが所有しているすべての UTxo を取得し一覧表示します。
+
+<StackBlitz />
+
+<Callout type="info" emoji="💡">
+  各ウォレットが提供するAPIを知りたい場合があります。
+  
+  そのような場合は、dcSpark が作成した[CARDANO CANIUSE](https://www.cardano-caniuse.io/) があります。
+
+  <Image src="/images/CARDANO-CANIUSE.png" alt="Hello" width={1200} height={630} />
+</Callout>
+
+Resources
+- CIP 30 - Cardano dApp-Wallet Web Bridge : https://cips.cardano.org/cips/cip30/
+
+### Lucid
+https://lucid.spacebudz.io/
+
+### Mesh
+https://meshjs.dev/
+
+### Typhon 
+https://docs.typhonwallet.io/
