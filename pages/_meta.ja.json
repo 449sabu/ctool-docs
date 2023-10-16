@@ -9,7 +9,6 @@
     "type": "separator",
     "title": "📝 Cardanoを学ぶ"
   },
-  "transaction": "Transaction",
-  "api": "API",
-  "stake-pool": "Staking Pool"
+  "guide": "Guide",
+  "examples": "Examples"
 }

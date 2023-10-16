@@ -2,5 +2,7 @@
   "dapp-connector": "dApp Connector",
   "api": "API",
   "tx": "Transaction",
-  "token": "Token"
+  "token": "Token",
+  "smart-contract": "Smart Contract",
+  "staking": "Staking"
 }
