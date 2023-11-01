@@ -5,6 +5,11 @@ const config: DocsThemeConfig ={
   project: {
     link: 'https://github.com/449sabu',
   },
+  sidebar: {
+    defaultMenuCollapseLevel: 1,
+    autoCollapse: true,
+    toggleButton: true
+  },
   darkMode: true,
   primaryHue: 183,   // number | { dark: number; light: number }
   i18n: [
