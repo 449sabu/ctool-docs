@@ -1,3 +1,101 @@
+import { FileTree } from "nextra/components";
+import { Callout } from 'nextra/components'
+
 # Carp
 
-[Carp](https://dcspark.github.io/carp/) は DcSpark が開発した Cardano データベースインデクサーです。
+[Carp](https://dcspark.github.io/carp/) は DcSpark が開発した PostgreSQL インデクサー です。
+PostgreSQL とは、オープンソースで開発されている RDBMS(リレーショナルデータベース) の一つで、多くの開発現場で利用されているデータベースシステムです。
+
+Carp を使用すると、指定した Cardano Node が所有するデータベースにアクセスし、内蔵されている [Oura](https://github.com/txpipe/oura) がルールに基づいてデータを解析し、PostgreSQL に整理して保存してくれます。
+
+このページでは Carp を使用する手順の一例を紹介します。
+
+### 動作環境
+
+- Ubuntu Server 22.04
+- Rust
+- PostgreSQL
+
+### 1. Ubuntu の更新
+
+はじめに、Ubuntu を最新の状態に更新します。
+
+```bash copy
+sudo apt update -y && sudo apt upgrade -y
+```
+
+更新後、以下のコマンドで PostgreSQL を含む依存関係をインストールします。
+
+```bash copy
+sudo apt install -y git tmux curl postgresql
+```
+
+### 2. Rust 環境構築
+
+Carp は Rust で書かれているため、Rust の環境構築を行います。
+
+Rust のツールチェーンである`rustup`をインストールします。
+
+```bash copy
+curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+```
+
+インストールの準備ができると対話形式のプロンプトに切り替わるので 1 の default オプション `1) Proceed with installation (default)` を選択し Enter キーを押してください。
+
+インストールが正常に終わると、`Rust is installed now. Great!`というメッセージが表示されるので、以下のコマンドを入力し環境設定を反映します。
+
+```bash copy
+source "$HOME/.cargo/env"
+rustc --version
+```
+
+`rustup`のバージョンが表示されれば正常にインストールされています。
+
+### 3. PostgreSQLのデータベースを作成する
+
+PostgreSQLを起動します。
+
+```bash copy
+sudo systemctl enable postgresql
+sudo systemctl start postgresql
+sudo systemctl --no-pager status postgresql
+```
+
+`active (exited)`が戻り値に含まれていればPostgreSQLが起動している状態です。
+
+データベースとユーザーを作成します。以下コマンド3行目の`createuser`コマンドを実行すると新規ユーザーのログインパスワードを入力するように求められます。
+入力した値は以降の環境設定時に使用するので、必ず控えておいてください。
+
+```bash copy
+sudo -u postgres createdb carp_mainnet
+sudo -u postgres psql -c 'ALTER DATABASE carp_mainnet SET jit_above_cost = -1;'
+sudo -u postgres createuser carp
+sudo -u postgres psql -t -d carp_mainnet -c 'GRANT ALL ON SCHEMA public TO carp;'
+```
+
+### 4. Carp を構成する
+
+<FileTree>
+	<FileTree.Folder name="/home/usr" defaultOpen>
+		<FileTree.Folder name="carp" defaultOpen>
+    		<FileTree.Folder name="indexer" defaultOpen>
+		</FileTree.Folder>
+    		<FileTree.Folder name="carp" defaultOpen>
+		</FileTree.Folder>
+    <FileTree.File name="..."/>
+		</FileTree.Folder>
+	</FileTree.Folder>
+</FileTree>
+
+dcSparkのGithubからCarpのリポジトリを取得します。
+
+```bash copy
+cd $HOME
+git clone https://github.com/dcSpark/carp.git
+```
+
+Ouraで接続するCardano nodeとPostgreSQLのデータベースを構成します。
+
+```bash copy
+nano $HOME/carp/indexer/configs/oura.yml
+```
